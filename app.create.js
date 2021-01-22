@@ -22,5 +22,17 @@ var app = new Vue({
         }
       ]
     }
+  },
+  methods: {
+    removeQuestion: function(questionIndex) {
+      var newQuestions = [];
+      var currentQuestions = this.testData.questions;
+      for (var i = 0; i < currentQuestions.length; i++) {
+        if (i !== questionIndex) {
+          newQuestions.push(currentQuestions[i]);
+        }
+      }
+      this.testData.questions = newQuestions;
+    }
   }
 })
