@@ -1,6 +1,7 @@
 var app = new Vue({
   el: '#app',
   data: {
+    showModal: false,
     testData: {
       title: 'presidents',
       questions: [
@@ -33,6 +34,10 @@ var app = new Vue({
         }
       }
       this.testData.questions = newQuestions;
+    },
+    addQuestion: function() {
+      var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+      modal.show();
     }
   }
 })
