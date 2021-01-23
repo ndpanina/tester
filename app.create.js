@@ -2,6 +2,18 @@ var app = new Vue({
   el: '#app',
   data: {
     showModal: false,
+    emptyModalQuestion: {
+      index: -1,
+      text: '',
+      answers: []
+    },
+    newAnswer: '',
+    isAddNewAnswer: false,
+    modalQuestion: {
+      index: -1,
+      text: '',
+      answers: []
+    },
     testData: {
       title: 'presidents',
       questions: [
@@ -25,7 +37,7 @@ var app = new Vue({
     }
   },
   methods: {
-    removeQuestion: function(questionIndex) {
+    removeQuestion: function (questionIndex) {
       var newQuestions = [];
       var currentQuestions = this.testData.questions;
       for (var i = 0; i < currentQuestions.length; i++) {
@@ -35,9 +47,31 @@ var app = new Vue({
       }
       this.testData.questions = newQuestions;
     },
-    addQuestion: function() {
+    addQuestion: function () {
       var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
       modal.show();
+    },
+    addModalAnswer: function () {
+      this.modalQuestion.answers.push({
+        text: '',
+        good: false,
+      })
+    },
+    saveNewAnswer: function () {
+      this.modalQuestion.answers.push({
+        text: this.newAnswer,
+        good: false
+      });
+      this.isAddNewAnswer = false;
+      this.newAnswer = '';
+    },
+    saveNewQuestion: function () {
+
+      this.testData.questions.push(this.modalQuestion);
+      var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+      // modal.dispose();
+      modal.hide();
+      this.modalQuestion = this.emptyModalQuestion;
     }
   }
 })
