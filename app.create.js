@@ -70,13 +70,13 @@ var app = new Vue({
       this.testData.questions = newQuestions;
     },
     editQuestion: function (questionIndex) {
-      this.modalQuestion = this.testData.questions[questionIndex];
+      this.modalQuestion = Object.create(this.testData.questions[questionIndex]);
       this.modalQuestion.index = questionIndex;
       var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
       modal.show();
     },
     addQuestion: function () {
-      this.modalQuestion = this.emptyModalQuestion;
+      this.modalQuestion = JSON.parse(JSON.stringify(this.emptyModalQuestion));
       var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
       modal.show();
     },
@@ -90,9 +90,9 @@ var app = new Vue({
     },
     saveQuestion: function () {
       if (this.modalQuestion.index == -1) {
-        this.testData.questions.push(this.modalQuestion);
+        this.testData.questions.push(JSON.parse(JSON.stringify(this.modalQuestion)));
       } else {
-        this.testData.questions[this.modalQuestion.index] = this.modalQuestion;
+        this.testData.questions[this.modalQuestion.index] = JSON.parse(JSON.stringify(this.modalQuestion));
       }
       var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
       modal.hide();

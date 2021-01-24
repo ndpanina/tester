@@ -158,15 +158,19 @@
                     <div v-if="(modalQuestion.questionType == questionType.radio) || (modalQuestion.questionType == questionType.check)">
                         <p>Варианты ответа</p>
 
-                        <div v-for="answer in modalQuestion.answers" v-if="modalQuestion.questionType == questionType.radio">
-                            <input class="form-check-input" type="radio" v-bind:value="answer" v-model="modalQuestion.trueAnswer">
+                        <div v-for="answer in modalQuestion.answers"
+                             v-if="modalQuestion.questionType == questionType.radio">
+                            <input class="form-check-input" type="radio" :value="answer"
+                                   v-model="modalQuestion.trueAnswer">
                             <label class="form-check-label">
                                 {{ answer }}
                             </label>
                         </div>
 
-                        <div v-for="answer in modalQuestion.answers" v-if="modalQuestion.questionType == questionType.check">
-                            <input class="form-check-input" type="checkbox" :value="answer" v-model="modalQuestion.trueAnswers">
+                        <div v-for="answer in modalQuestion.answers"
+                             v-if="modalQuestion.questionType == questionType.check">
+                            <input class="form-check-input" type="checkbox" :value="answer"
+                                   v-model="modalQuestion.trueAnswers">
                             <label class="form-check-label">
                                 {{ answer }}
                             </label>
