@@ -82,21 +82,23 @@
         </p>
 
         <div class="form-check">
-            <div v-for="answer in question.answers" v-if="question.questionType === questionType.radio">
-                <input class="form-check-input" type="radio" disabled :checked="answer === question.trueAnswer">
+            <div v-for="answer in question.answers" v-if="question.questionType == questionType.radio">
+                <input class="form-check-input" type="radio" disabled :checked="answer == question.trueAnswer">
                 <label class="form-check-label">
                     {{ answer }}
                 </label>
             </div>
 
-            <div v-for="answer in question.answers" v-if="question.questionType === questionType.check">
-                <input class="form-check-input" type="checkbox" disabled :checked="question.trueAnswer.indexOf(answer) !== -1">
+            <div v-for="answer in question.answers" v-if="question.questionType == questionType.check">
+                <input class="form-check-input" type="checkbox" disabled
+                       :checked="question.trueAnswer.indexOf(answer) !== -1">
                 <label class="form-check-label">
                     {{ answer }}
                 </label>
             </div>
 
-            <input type="text" v-if="question.questionType === questionType.text" v-model="question.trueAnswer" disabled>
+            <input type="text" v-if="question.questionType == questionType.text" v-model="question.trueAnswer"
+                   disabled>
         </div>
         <br/>
     </div>
@@ -135,6 +137,25 @@
                         <label for="floatingTextarea">Текст вопроса</label>
                     </div>
                     <div>
+                        <p>Тип вопроса</p>
+                        <div>
+                            <input class="form-check-input" type="radio" value="0" v-model="modalQuestion.questionType">
+                            <label class="form-check-label">текст</label>
+                        </div>
+                        <div>
+                            <input class="form-check-input" type="radio" value="1" v-model="modalQuestion.questionType">
+                            <label class="form-check-label">один правильный вариант</label>
+                        </div>
+                        <div>
+                            <input class="form-check-input" type="radio" value="2" v-model="modalQuestion.questionType">
+                            <label class="form-check-label">несколько правильных вариантов</label>
+                        </div>
+                    </div>
+                    <dif v-if="modalQuestion.questionType == questionType.text">
+                        Правильный ответ
+                        <input type="text" v-model="modalQuestion.trueAnswer">
+                    </dif>
+                    <div v-if="modalQuestion.questionType == questionType.radio">
                         <p>Варианты ответа</p>
                         <div v-for="(answer, index) in modalQuestion.answers">
                             {{ answer }}
@@ -151,7 +172,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                            v-on:click="saveNewQuestion()">Save changes
+                            v-on:click="saveQuestion()">Save changes
                     </button>
                 </div>
             </div>

@@ -12,14 +12,16 @@ var app = new Vue({
     emptyModalQuestion: {
       index: -1,
       text: '',
-      answers: []
+      answers: [],
+      trueAnswer: undefined
     },
     newAnswer: '',
     isAddNewAnswer: false,
     modalQuestion: {
       index: -1,
       text: '',
-      answers: []
+      answers: [],
+      trueAnswer: undefined
     },
     testData: {
       title: 'presidents',
@@ -74,22 +76,20 @@ var app = new Vue({
       modal.show();
     },
     addModalAnswer: function () {
-      this.modalQuestion.answers.push({
-        text: '',
-        good: false,
-      })
+      this.modalQuestion.answers.push('')
     },
     saveNewAnswer: function () {
-      this.modalQuestion.answers.push({
-        text: this.newAnswer,
-        good: false
-      });
+      this.modalQuestion.answers.push(this.newAnswer);
       this.isAddNewAnswer = false;
       this.newAnswer = '';
     },
-    saveNewQuestion: function () {
+    saveQuestion: function () {
+      if (this.modalQuestion.index == -1) {
+        this.testData.questions.push(this.modalQuestion);
+      } else {
+        this.testData.questions[this.modalQuestion.index] = this.modalQuestion;
+      }
       var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-      this.testData.questions.push(this.modalQuestion);
       modal.hide();
     }
   }
