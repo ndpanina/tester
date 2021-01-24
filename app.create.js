@@ -1,6 +1,13 @@
+var questionType = {
+  text: 0,
+  radio: 1,
+  check: 2
+};
+
 var app = new Vue({
   el: '#app',
   data: {
+    questionType: questionType,
     showModal: false,
     emptyModalQuestion: {
       index: -1,
@@ -19,19 +26,27 @@ var app = new Vue({
       questions: [
         {
           text: 'who is president usa now?',
-          isSingeAnswer: true,
+          questionType: questionType.radio,
           answers: [
-            {text: 'baiden', good: true},
-            {text: 'trump', good: false}
-          ]
+            'baiden',
+            'trump'
+          ],
+          trueAnswer: 'baiden'
         },
         {
           text: 'who is president Russia now?',
-          isSingeAnswer: false,
+          questionType: questionType.check,
           answers: [
-            {text: 'Putin', good: true},
-            {text: 'Navalny', good: false}
-          ]
+            'Putin',
+            'Navalny',
+            'Trump'
+          ],
+          trueAnswer: ['Putin']
+        },
+        {
+          text: 'current year?',
+          questionType: questionType.text,
+          trueAnswer: 2021
         }
       ]
     }
@@ -47,7 +62,14 @@ var app = new Vue({
       }
       this.testData.questions = newQuestions;
     },
+    editQuestion: function (questionIndex) {
+      this.modalQuestion = this.testData.questions[questionIndex];
+      this.modalQuestion.index = questionIndex;
+      var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+      modal.show();
+    },
     addQuestion: function () {
+      this.modalQuestion = this.emptyModalQuestion;
       var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
       modal.show();
     },
@@ -66,12 +88,9 @@ var app = new Vue({
       this.newAnswer = '';
     },
     saveNewQuestion: function () {
-
-      this.testData.questions.push(this.modalQuestion);
       var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-      // modal.dispose();
+      this.testData.questions.push(this.modalQuestion);
       modal.hide();
-      this.modalQuestion = this.emptyModalQuestion;
     }
   }
 })
