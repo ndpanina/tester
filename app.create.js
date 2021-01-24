@@ -13,7 +13,9 @@ var app = new Vue({
       index: -1,
       text: '',
       answers: [],
-      trueAnswer: undefined
+      trueAnswers: [],
+      trueAnswer: undefined,
+      trueText: undefined,
     },
     newAnswer: '',
     isAddNewAnswer: false,
@@ -21,7 +23,9 @@ var app = new Vue({
       index: -1,
       text: '',
       answers: [],
-      trueAnswer: undefined
+      trueAnswers: [],
+      trueAnswer: undefined,
+      trueText: undefined,
     },
     testData: {
       title: 'presidents',
@@ -33,7 +37,8 @@ var app = new Vue({
             'baiden',
             'trump'
           ],
-          trueAnswer: 'baiden'
+          trueAnswer: 'baiden',
+          trueAnswers: []
         },
         {
           text: 'who is president Russia now?',
@@ -43,7 +48,7 @@ var app = new Vue({
             'Navalny',
             'Trump'
           ],
-          trueAnswer: ['Putin']
+          trueAnswers: ['Putin']
         },
         {
           text: 'current year?',
