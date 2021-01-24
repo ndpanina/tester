@@ -7,6 +7,8 @@ var questionType = {
 var app = new Vue({
   el: '#app',
   data: {
+    codeVisible: false,
+    code: undefined,
     questionType: questionType,
     showModal: false,
     emptyModalQuestion: {
@@ -96,6 +98,10 @@ var app = new Vue({
       }
       var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
       modal.hide();
+    },
+    generateCode: function() {
+      this.code = window.btoa(JSON.stringify(this.testData));
+      this.codeVisible = true;
     }
   }
 })
