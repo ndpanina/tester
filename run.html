@@ -44,13 +44,65 @@
 
 </nav>
 
-<main class="container" id="app">
+<main class="container" id="app" v-cloak>
     <div class="bg-light p-5 rounded">
         <h1>{{ testData.title }}</h1>
     </div>
+
+    <br/>
+
+    <div class="d-flex justify-content-center" v-if="!testStarted">
+        <button class="btn btn-primary center" v-on:click="testStarted = true">Начать тестирование</button>
+    </div>
+
+    <div class="" v-if="testStarted && !testFinished">
+
+        <h3>Вопрос {{ currentQuestionIndex + 1 }} из {{ testData.questions.length }}</h3>
+        <p>{{ currentQuestion.text }}</p>
+
+        <dif v-if="currentQuestion.questionType == questionType.text">
+            Правильный ответ
+            <input type="text" v-model="answerText">
+            <br />
+        </dif>
+
+        <div v-if="(currentQuestion.questionType == questionType.radio) || (currentQuestion.questionType == questionType.check)">
+            <p>Варианты ответа</p>
+
+            <div v-for="answer in currentQuestion.answers"
+                 v-if="currentQuestion.questionType == questionType.radio">
+                <input class="form-check-input" type="radio" :value="answer"
+                       v-model="answerRadio">
+                <label class="form-check-label">
+                    {{ answer }}
+                </label>
+            </div>
+
+            <div v-for="answer in currentQuestion.answers"
+                 v-if="currentQuestion.questionType == questionType.check">
+                <input class="form-check-input" type="checkbox" :value="answer"
+                       v-model="answerCheck">
+                <label class="form-check-label">
+                    {{ answer }}
+                </label>
+            </div>
+
+        </div>
+
+        <br />
+        <div>
+            <button class="btn btn-primary" v-on:click="doAnswer">Ввести ответ</button>
+        </div>
+
+    </div>
+
+    <div v-if="testFinished">
+        Итоги теста:
+    </div>
+
 </main>
 <script>
-    let testData = 'eyJ0aXRsZSI6InByZXNpZGVudHMiLCJxdWVzdGlvbnMiOlt7InRleHQiOiJ3aG8gaXMgcHJlc2lkZW50IHVzYSBub3c/IiwicXVlc3Rpb25UeXBlIjoxLCJhbnN3ZXJzIjpbImJhaWRlbiIsInRydW1wIl0sInRydWVBbnN3ZXIiOiJiYWlkZW4iLCJ0cnVlQW5zd2VycyI6W119LHsidGV4dCI6IndobyBpcyBwcmVzaWRlbnQgUnVzc2lhIG5vdz8iLCJxdWVzdGlvblR5cGUiOjIsImFuc3dlcnMiOlsiUHV0aW4iLCJOYXZhbG55IiwiVHJ1bXAiXSwidHJ1ZUFuc3dlcnMiOlsiUHV0aW4iXX0seyJ0ZXh0IjoiY3VycmVudCB5ZWFyPyIsInF1ZXN0aW9uVHlwZSI6MCwidHJ1ZUFuc3dlciI6MjAyMX1dfQ==';
+  let testData = 'eyJ0aXRsZSI6InByZXNpZGVudHMiLCJxdWVzdGlvbnMiOlt7InRleHQiOiJ3aG8gaXMgcHJlc2lkZW50IHVzYSBub3c/IiwicXVlc3Rpb25UeXBlIjoxLCJhbnN3ZXJzIjpbImJhaWRlbiIsInRydW1wIl0sInRydWVBbnN3ZXIiOiJiYWlkZW4iLCJ0cnVlQW5zd2VycyI6W119LHsidGV4dCI6IndobyBpcyBwcmVzaWRlbnQgUnVzc2lhIG5vdz8iLCJxdWVzdGlvblR5cGUiOjIsImFuc3dlcnMiOlsiUHV0aW4iLCJOYXZhbG55IiwiVHJ1bXAiXSwidHJ1ZUFuc3dlcnMiOlsiUHV0aW4iXX0seyJ0ZXh0IjoiY3VycmVudCB5ZWFyPyIsInF1ZXN0aW9uVHlwZSI6MCwidHJ1ZUFuc3dlciI6MjAyMX1dfQ==';
 </script>
 <script src="bootstrap.min.js"></script>
 <script src="vue.min.js"></script>
