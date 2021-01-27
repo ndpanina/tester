@@ -100,7 +100,7 @@ var app = new Vue({
       modal.hide();
     },
     generateCode: function() {
-      this.code = window.btoa(JSON.stringify(this.testData));
+      this.code = window.btoa(unescape(encodeURIComponent(JSON.stringify(this.testData))));
       this.codeVisible = true;
     }
   }

@@ -22,7 +22,7 @@ let app = new Vue({
   },
   methods: {
     loadTest: function () {
-      this.testData = JSON.parse(atob(testData));
+      this.testData = JSON.parse(decodeURIComponent(escape(atob(testData))));
       this.currentQuestion = this.testData.questions[this.currentQuestionIndex];
       this.testLoaded = true;
     },
