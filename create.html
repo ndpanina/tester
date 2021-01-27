@@ -123,11 +123,9 @@
     </button>
 
     <br />
-    <div class="form-floating" v-if="codeVisible">
+    <div v-if="codeVisible">
         <br />
-        <textarea class="form-control" rows="10">
-            {{ code }}
-        </textarea>
+        <textarea class="form-control" rows="10">{{ code }}</textarea>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
