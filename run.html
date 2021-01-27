@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Создать тест</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="bootstrap-icons.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        body {
+            min-height: 75rem;
+            padding-top: 4.5rem;
+        }
+    </style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Тестирование</a>
+    </div>
+
+</nav>
+
+<main class="container" id="app">
+    <div class="bg-light p-5 rounded">
+        <h1>{{ testData.title }}</h1>
+    </div>
+</main>
+<script>
+    let testData = 'eyJ0aXRsZSI6InByZXNpZGVudHMiLCJxdWVzdGlvbnMiOlt7InRleHQiOiJ3aG8gaXMgcHJlc2lkZW50IHVzYSBub3c/IiwicXVlc3Rpb25UeXBlIjoxLCJhbnN3ZXJzIjpbImJhaWRlbiIsInRydW1wIl0sInRydWVBbnN3ZXIiOiJiYWlkZW4iLCJ0cnVlQW5zd2VycyI6W119LHsidGV4dCI6IndobyBpcyBwcmVzaWRlbnQgUnVzc2lhIG5vdz8iLCJxdWVzdGlvblR5cGUiOjIsImFuc3dlcnMiOlsiUHV0aW4iLCJOYXZhbG55IiwiVHJ1bXAiXSwidHJ1ZUFuc3dlcnMiOlsiUHV0aW4iXX0seyJ0ZXh0IjoiY3VycmVudCB5ZWFyPyIsInF1ZXN0aW9uVHlwZSI6MCwidHJ1ZUFuc3dlciI6MjAyMX1dfQ==';
+</script>
+<script src="bootstrap.min.js"></script>
+<script src="vue.min.js"></script>
+<script src="app.run.js"></script>
+
+</body>
+</html>
