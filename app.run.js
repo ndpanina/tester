@@ -14,7 +14,7 @@ let app = new Vue({
     currentQuestionIndex: 0,
     currentQuestion: undefined,
 
-    answerText: undefined,
+    answerText: '',
     answerRadio: undefined,
     answerCheck: [],
 
@@ -65,7 +65,7 @@ let app = new Vue({
       }
     },
     resetAnswers: function () {
-      this.answerText = undefined;
+      this.answerText = '';
       this.answerRadio = undefined;
       this.answerCheck = [];
     }
