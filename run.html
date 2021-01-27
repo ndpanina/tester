@@ -97,12 +97,12 @@
     </div>
 
     <div v-if="testFinished">
-        Итоги теста:
+        Итоги теста: верных ответов {{ goodAnswersCount }} из {{ testData.questions.length }}
     </div>
 
 </main>
 <script>
-  let testData = 'eyJ0aXRsZSI6InByZXNpZGVudHMiLCJxdWVzdGlvbnMiOlt7InRleHQiOiJ3aG8gaXMgcHJlc2lkZW50IHVzYSBub3c/IiwicXVlc3Rpb25UeXBlIjoxLCJhbnN3ZXJzIjpbImJhaWRlbiIsInRydW1wIl0sInRydWVBbnN3ZXIiOiJiYWlkZW4iLCJ0cnVlQW5zd2VycyI6W119LHsidGV4dCI6IndobyBpcyBwcmVzaWRlbnQgUnVzc2lhIG5vdz8iLCJxdWVzdGlvblR5cGUiOjIsImFuc3dlcnMiOlsiUHV0aW4iLCJOYXZhbG55IiwiVHJ1bXAiXSwidHJ1ZUFuc3dlcnMiOlsiUHV0aW4iXX0seyJ0ZXh0IjoiY3VycmVudCB5ZWFyPyIsInF1ZXN0aW9uVHlwZSI6MCwidHJ1ZUFuc3dlciI6MjAyMX1dfQ==';
+  let testData = 'eyJ0aXRsZSI6InByZXNpZGVudHMiLCJxdWVzdGlvbnMiOlt7InRleHQiOiJ3aG8gaXMgcHJlc2lkZW50IHVzYSBub3c/IiwicXVlc3Rpb25UeXBlIjoxLCJhbnN3ZXJzIjpbImJhaWRlbiIsInRydW1wIl0sInRydWVBbnN3ZXIiOiJiYWlkZW4iLCJ0cnVlQW5zd2VycyI6W119LHsidGV4dCI6IndobyBpcyBwcmVzaWRlbnQgUnVzc2lhIG5vdz8iLCJxdWVzdGlvblR5cGUiOjIsImFuc3dlcnMiOlsiUHV0aW4iLCJOYXZhbG55IiwiVHJ1bXAiXSwidHJ1ZUFuc3dlcnMiOlsiUHV0aW4iXX0seyJ0ZXh0IjoiY3VycmVudCB5ZWFyPyIsInF1ZXN0aW9uVHlwZSI6MCwidHJ1ZUFuc3dlciI6IjIwMjEifV19';
 </script>
 <script src="bootstrap.min.js"></script>
 <script src="vue.min.js"></script>

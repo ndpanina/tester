@@ -55,7 +55,7 @@ var app = new Vue({
         {
           text: 'current year?',
           questionType: questionType.text,
-          trueAnswer: 2021
+          trueAnswer: "2021"
         }
       ]
     }
