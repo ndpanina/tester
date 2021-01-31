@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Создать тест</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="bootstrap-icons.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        body {
+            min-height: 75rem;
+            padding-top: 4.5rem;
+        }
+    </style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Тестирование</a>
+    </div>
+
+</nav>
+
+<main class="container" id="app" v-cloak>
+    <div class="bg-light p-5 rounded">
+        <h1>{{ testData.title }}</h1>
+    </div>
+
+    <br/>
+
+    <div class="d-flex justify-content-center" v-if="!testStarted">
+        <button class="btn btn-primary center" v-on:click="testStarted = true">Начать тестирование</button>
+    </div>
+
+    <div class="" v-if="testStarted && !testFinished">
+
+        <h3>Вопрос {{ currentQuestionIndex + 1 }} из {{ testData.questions.length }}</h3>
+        <p>{{ currentQuestion.text }}</p>
+
+        <dif v-if="currentQuestion.questionType == questionType.text">
+            Правильный ответ
+            <input type="text" v-model="answerText">
+            <br />
+        </dif>
+
+        <div v-if="(currentQuestion.questionType == questionType.radio) || (currentQuestion.questionType == questionType.check)">
+            <p>Варианты ответа</p>
+
+            <div v-for="answer in currentQuestion.answers"
+                 v-if="currentQuestion.questionType == questionType.radio">
+                <input class="form-check-input" type="radio" :value="answer"
+                       v-model="answerRadio">
+                <label class="form-check-label">
+                    {{ answer }}
+                </label>
+            </div>
+
+            <div v-for="answer in currentQuestion.answers"
+                 v-if="currentQuestion.questionType == questionType.check">
+                <input class="form-check-input" type="checkbox" :value="answer"
+                       v-model="answerCheck">
+                <label class="form-check-label">
+                    {{ answer }}
+                </label>
+            </div>
+
+        </div>
+
+        <br />
+        <div>
+            <button class="btn btn-primary" v-on:click="doAnswer">Ввести ответ</button>
+        </div>
+
+    </div>
+
+    <div v-if="testFinished">
+        Итоги теста: верных ответов {{ goodAnswersCount }} из {{ testData.questions.length }}
+    </div>
+
+</main>
+<script>
+  let testData = 'eyJ0aXRsZSI6ItCU0YDQtdCy0L3Rj9GPINCT0YDQtdGG0LjRjyA1INC60LvQsNGB0YEiLCJxdWVzdGlvbnMiOlt7ImluZGV4IjotMSwidGV4dCI6ItCd0LAg0YHQutC70L7QvdCw0YUg0LPQvtGAINC00YDQtdCy0L3QuNC1INCz0YDQtdC60Lgg0LLRi9GA0LDRidC40LLQsNC70Lg6IiwiYW5zd2VycyI6WyIxKSDQstC40L3QvtCz0YDQsNC0INC4INC+0LvQuNCy0LrQuCIsIjIpINGE0LjQvdC40LrQuCDQuCDQuNC90LbQuNGAIiwiIDMpINGA0LjRgSDQuCDRh9Cw0Lk7ICIsIjQpINC/0YjQtdC90LjRhtGDINC4INGP0YfQvNC10L3RjC4iXSwidHJ1ZUFuc3dlcnMiOltdLCJxdWVzdGlvblR5cGUiOiIxIiwidHJ1ZUFuc3dlciI6IjEpINCy0LjQvdC+0LPRgNCw0LQg0Lgg0L7Qu9C40LLQutC4In0seyJpbmRleCI6LTEsInRleHQiOiIgMi4g0JrQsNC6INC40LzQtdC90L7QstCw0LvQuCDRgdC10LHRjyDQttC40YLQtdC70Lgg0LTRgNC10LLQvdC10Lkg0JPRgNC10YbQuNC4OiIsImFuc3dlcnMiOlsiMSkg0LPRgNC10LrQuDsiLCIyKSDRjdC70LvQuNC90Ys7ICIsIjMpINC80LXRgtC10LrQuDsiLCI0KSDRhNGA0LDQutC40LnRhtGLLiJdLCJ0cnVlQW5zd2VycyI6W10sInF1ZXN0aW9uVHlwZSI6IjEiLCJ0cnVlQW5zd2VyIjoiMikg0Y3Qu9C70LjQvdGLOyAifV19';
+</script>
+<script src="bootstrap.min.js"></script>
+<script src="vue.min.js"></script>
+<script src="app.run.js"></script>
+
+</body>
+</html>
